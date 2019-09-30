@@ -3,6 +3,6 @@ class Comment < ApplicationRecord
   belongs_to :post
 
   def created_at
-    super().strftime('%b %d %Y')
+    super().strftime('%m/%d/%Y')
   end
 end
