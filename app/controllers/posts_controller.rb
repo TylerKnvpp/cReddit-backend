@@ -12,6 +12,8 @@ class PostsController < ApplicationController
 
     def create
         post = Post.create(post_params)
+        post.user_id = 3
+        post.save
         render json: post
     end
 
@@ -30,7 +32,7 @@ class PostsController < ApplicationController
     private
 
     def post_params
-        params.require(:post).permit(:title, :content, :image_url, :user, :upvotes, :downvotes)
+        params.require(:post).permit(:title, :content, :topic, :image_url, :user, :upvotes, :downvotes)
     end
     
 end
