@@ -12,7 +12,7 @@ class PostsController < ApplicationController
 
     def create
         post = Post.create(post_params)
-        post.user_id = 3
+        post.user_id = 2
         post.save
         render json: post
     end
