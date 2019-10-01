@@ -34,7 +34,7 @@ c = Comment.create({
     source: nil,
     source_validated: nil,
     source_disputed: nil,
-    is_fact?: false,
+    is_fact: false,
     user_id: u.id,
     post_id: p.id,
 })

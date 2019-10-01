@@ -31,7 +31,7 @@ class CommentsController < ApplicationController
     private
 
     def comment_params
-        params.require(:comment).permit(:content, :upvotes, :downvotes, :source, :source_validated, :source_disputed, :is_fact?, :user, :post)
+        params.require(:comment).permit(:content, :upvotes, :downvotes, :source, :source_validated, :source_disputed, :is_fact, :user_id, :post_id)
     end
 
 end
