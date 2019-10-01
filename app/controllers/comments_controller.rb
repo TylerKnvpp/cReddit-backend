@@ -13,6 +13,9 @@ class CommentsController < ApplicationController
 
     def create
         comment = Comment.create(comment_params)
+        comment.user_id = 2
+        comment.post_id = 2
+        comment.save
         render json: comment
     end
 
