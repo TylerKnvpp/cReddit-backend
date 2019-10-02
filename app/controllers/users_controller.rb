@@ -6,9 +6,10 @@ class UsersController < ApplicationController
     end
 
     def create
+        byebug
        user = User.create(user_params)
        token = JWT.encode({user_id: user.id}, ENV['JWT_TOKEN'])
-       render json: {token: token, username: user.username }  
+       render json: {token: token, username: user.username, id: user.id }  
     end
 
     def update
@@ -20,7 +21,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:name, :username, :password_digest, :avatar, :credibility)
+        params.require(:user).permit(:name, :username, :password, :avatar, :credibility)
     end
 
 end
