@@ -12,10 +12,12 @@ class CommentsController < ApplicationController
     end
 
     def create
-        comment = Comment.create(comment_params)
-        comment.user_id = 2
-        comment.post_id = 2
+        comment = Comment.new(comment_params)
+        user = User.find(params['user']['id'])
+        comment['user_id'] = user.id
+        byebug
         comment.save
+    
         render json: comment
     end
 
@@ -34,7 +36,7 @@ class CommentsController < ApplicationController
     private
 
     def comment_params
-        params.require(:comment).permit(:content, :upvotes, :downvotes, :source, :source_validated, :source_disputed, :is_fact, :user_id, :post_id)
+        params.require(:comment).permit(:content, :upvotes, :downvotes, :source, :source_validated, :source_disputed, :is_fact, :user, :post_id)
     end
 
 end

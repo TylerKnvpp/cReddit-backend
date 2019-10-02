@@ -11,9 +11,12 @@ class PostsController < ApplicationController
     end
 
     def create
-        post = Post.create(post_params)
-        post.user_id = 2
+        
+        post = Post.new(post_params)
+        user = User.find(params['user']['id'])
+        post['user_id'] = user.id
         post.save
+    
         render json: post
     end
 
