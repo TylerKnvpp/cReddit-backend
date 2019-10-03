@@ -15,7 +15,6 @@ class CommentsController < ApplicationController
         comment = Comment.new(comment_params)
         user = User.find(params['user']['id'])
         comment['user_id'] = user.id
-        byebug
         comment.save
     
         render json: comment

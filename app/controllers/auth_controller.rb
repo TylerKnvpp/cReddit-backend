@@ -9,10 +9,10 @@ class AuthController < ApplicationController
     end
 
     def login
-        byebug
+        # byebug
         user = User.find_by(username: params[:user][:username])
         token = JWT.encode({user_id: user.id}, ENV['JWT_TOKEN']) if user
-        if user && user.authenticate(params[:user][:password])
+        if user && user.authenticate(params['user']['password'])
             render json: {user: user, token: token}
         else
             render :json => { :errors => user.errors.full_messages}

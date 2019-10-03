@@ -6,10 +6,13 @@ class UsersController < ApplicationController
     end
 
     def create
-        byebug
        user = User.create(user_params)
-       token = JWT.encode({user_id: user.id}, ENV['JWT_TOKEN'])
-       render json: {token: token, username: user.username, id: user.id }  
+       token = JWT.encode({user_id: user.id}, ENV['JWT_TOKEN']) if user
+       if (user.valid?)
+        render json: {token: token, username: user.username, id: user.id }  
+       else
+        render :json => { :errors => user.errors.full_messages, :code => 69 }
+       end
     end
 
     def update
